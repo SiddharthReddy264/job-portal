@@ -1,0 +1,14 @@
+# Use OpenJDK 17 image
+FROM openjdk:17-jdk-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy Maven build files and project files
+COPY . /app
+
+# Package the application
+RUN ./mvnw clean package -DskipTests
+
+# Run the application
+CMD ["java", "-jar", "target/jobportal-1.0.0.jar"]
